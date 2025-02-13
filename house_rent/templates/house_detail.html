@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+House Details: {{ house.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="custom-container mt-5">
+        <h1 class="house-title mb-4">{{ house.name }}</h1>
+
+        {% if house.image %}
+            <img src="{{ house.image.url }}" alt="{{ house.name }}" class="house-image mb-4" style="max-height: 400px;">
+        {% else %}
+            <div class="alert custom-alert text-center" role="alert">
+                <strong>Image is not available for this house.</strong>
+            </div>
+        {% endif %}
+        
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="section-title">Description</h3>
+                <p class="house-description">{{ house.description }}</p>
+            </div>
+            <div class="col-md-6">
+                <h3 class="section-title">Details</h3>
+                <ul class="details-list">
+                    <li><strong>Address:</strong> {{ house.address }}</li>
+                    <li><strong>Number of Rooms:</strong> {{ house.num_rooms }}</li>
+                    <li><strong>Area:</strong> {{ house.square_meters }} m²</li>
+                    <li><strong>Price per Month:</strong> {{ house.price_per_month }} euro</li>
+                    <li><strong>City:</strong> {{ house.city }}</li>
+                    <li><strong>Neighborhood:</strong> {{ house.neighborhood }}</li>
+                    <li><strong>Parking:</strong> {% if house.has_parking %}Yes{% else %}No{% endif %}</li>
+                    <li><strong>Garden:</strong> {% if house.has_garden %}Yes{% else %}No{% endif %}</li>
+                    <li><strong>Air Conditioning:</strong> {% if house.has_air_conditioning %}Yes{% else %}No{% endif %}</li>
+                    <li><strong>Owner:</strong> {{ house.owner.name }}</li>
+                    <li><strong>Owner's Email:</strong> {{ house.owner.email }}</li>
+                    <li><strong>Availability:</strong> {% if house.available %}Available{% else %}Unavailable{% endif %}</li>
+                </ul>
+            </div>
+        </div>
+>
+        <div class="mt-4 text-center">
+            <a href="{% url 'house_rentals' %}" class="btn custom-btn">Back to the house list</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block css %}
+<style>
+    .custom-container {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        padding: 40px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .house-title {
+        font-size: 2.5rem;
+        color: #007bff;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .house-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .house-description {
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #6c757d;
+    }
+
+    .custom-btn {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 12px 35px;
+        font-size: 1.2rem;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .custom-btn:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    .custom-alert {
+        background-color: #fff3cd;
+        color: #856404;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    .section-title {
+        color: #495057;
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+
+    .details-list {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .details-list li {
+        margin-bottom: 12px;
+    }
+
+    .details-list li strong {
+        color: #333;
+    }
+
+    .shadow {
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-secondary {
+        color: #6c757d;
+    }
+</style>
+{% endblock %}

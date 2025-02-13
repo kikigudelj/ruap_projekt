@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Predict the Price of Your House{% endblock %}
+
+{% block content %}
+
+<div class="content-container text-center mt-5">
+    <h2 class="header-text display-4">The predicted rental price for your property is:</h2>
+    <h1 class="price-text text-success"><b>{{ scored_label|floatformat:2 }} €</b></h1>
+    
+    <div class="info-alert mt-4">
+        <h4 class="alert-heading">Tip:</h4>
+        <p>This price is based on data and predictions from our model. For accurate information, we recommend consulting a real estate market expert.</p>
+    </div>
+    <div class="confidence-interval mt-4">
+        <h4>Confidence Interval:</h4>
+        <p><b>Estimated range:</b> {{ confidence_interval.0|floatformat:2 }} € - {{ confidence_interval.1|floatformat:2 }} €</p>
+    </div>
+
+    <div class="button-container mt-4">
+        <a href="{% url 'predict' %}" class="retry-button btn btn-primary">Try Again</a>
+        <p class="contact-info mt-2">If you have any additional questions, feel free to contact us.</p>
+    </div>
+
+    <div class="image-container mt-5" >
+        <img src="{% static 'images/house2.jpg' %}" style="margin-left: -95px;"  class="responsive-image rounded shadow-effect">
+    </div>
+</div>
+
+{% endblock %}
+
+{% block css %}
+<style>
+    .content-container {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-text {
+        color: #333;
+    }
+
+    .price-text {
+        font-size: 2.5rem;
+        color: #28a745;
+    }
+
+    .info-alert {
+        background-color: #d9f7e2;
+        border-color: #d4edda;
+        color: #155724;
+    }
+
+    .confidence-interval {
+        background-color: #e2e3e5;
+        border-color: #d6d8db;
+        color: #6c757d;
+    }
+
+    .retry-button {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .retry-button:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    .mt-5 {
+        margin-top: 3rem;
+    }
+
+    .responsive-image {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px; /* Opcionalno, ako želiš zaobljene kutove */
+    }
+
+    .shadow-effect {
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-container {
+        margin-top: 2rem;
+    }
+
+    .contact-info {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .image-container {
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+</style>
+{% endblock %}

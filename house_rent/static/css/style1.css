@@ -1,0 +1,105 @@
+.bg-overlay {
+    background-color: rgba(0, 0, 0, 0.6); 
+    padding: 15px;
+    border-radius: 8px; 
+}
+
+.carousel-caption h5, 
+.carousel-caption p {
+    color: white; 
+}
+
+/* Basic global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+  }
+  
+  /* Center the form card */
+  .container {
+    max-width: 600px;
+    margin-top: 50px;
+  }
+  
+  .card {
+    border-radius: 10px;
+  }
+  
+  .card-header {
+    background-color: #007bff;
+    color: white;
+    font-size: 1.5rem;
+    padding: 1rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .card-body {
+    padding: 2rem;
+  }
+  
+  /* Form inputs and buttons */
+  button {
+    background-color: #007bff;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .form-control {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+  
+  .alert {
+    margin-top: 15px;
+  }
+  
+  .text-center a {
+    color: #007bff;
+  }
+  
+  .text-center a:hover {
+    text-decoration: underline;
+  }
+
+  /* Osiguraj da html i body zauzimaju cijeli visinu ekrana */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Postavi body kao fleks-kontejner koji koristi cijelu visinu ekrana */
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Glavni sadržaj će zauzimati raspoloživi prostor */
+  .container {
+    flex: 1;
+  }
+  
+  /* Footer stil */
+  footer {
+    background-color: #f8f9fa;  /* Svijetla pozadina */
+    padding: 20px;
+    margin-top: auto;  /* Pomiče footer prema dnu */
+    text-align: center;
+  }
+  
+  footer .text-center {
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
+  }
+
+  

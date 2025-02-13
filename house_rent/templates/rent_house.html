@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Post Your House for Rent{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <center><h1 class="display-4 text-primary mb-5">Post Your House for Rent</h1></center>
+    
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-6">
+        <div class="card shadow-sm border-primary rounded">
+          <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              
+              <div class="form-group mb-4">
+                {{ form.as_p }}
+              </div>
+              
+              <button type="submit" class="btn btn-primary w-100">Post House</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Value Estimate Section -->
+    <div class="text-center mt-5">
+      <button type="button" class="btn btn-info btn-lg custom-btn" data-bs-toggle="modal" data-bs-target="#valueEstimateModal">
+        <i class="fas fa-question-circle"></i> <b>Not sure how much you can get for your house?</b>
+      </button>
+    </div>
+
+    <div class="modal fade" id="valueEstimateModal" tabindex="-1" aria-labelledby="valueEstimateModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-info text-white">
+            <h5 class="modal-title" id="valueEstimateModalLabel">Estimate the Value of Your House</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Not sure how much you can get for your house? Estimate its value here and find out!</p>
+          </div>
+          <div class="modal-footer">
+            <a href="{% url 'predict' %}" class="btn btn-lg btn-primary">Go to Estimation</a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}
+
+{% block extra_styles %}
+  <style>
+    .custom-btn {
+      background-color: #17a2b8; /* Bootstrap info color */
+      border: none;
+      color: white;
+      font-size: 18px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .custom-btn:hover {
+      background-color: #138496; /* Darker shade of info color */
+      transform: scale(1.05);
+    }
+
+    .custom-btn i {
+      margin-right: 8px;
+    }
+
+    .card-body {
+      padding: 30px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      margin-top: 8px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #17a2b8;
+      outline: none;
+    }
+
+    .modal-header {
+      background-color: #17a2b8;
+      color: white;
+    }
+
+    .modal-footer .btn-success {
+      background-color: #28a745;
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+    .modal-footer .btn-success:hover {
+      background-color: #218838;
+    }
+
+    .modal-body p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+  </style>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Houses for Rent
+{% endblock %}
+
+{% block content %}
+    <h1>Houses for Rent</h1>
+    <div class="container mt-4">
+        <div class="row">
+            {% for house in houses %}
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="width: 18rem;">
+                        {% if house.image %}
+                            <img src="{{ house.image.url }}" class="card-img-top" alt="{{ house.name }}">
+                        {% else %}
+                            <div class="card-img-top" style="height: 180px; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                                <p>No image available</p>
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ house.name }}</h5>
+                            <p class="card-text">{{ house.description|truncatewords:15 }}</p>
+                            <p class="card-text">Number of rooms: {{ house.num_rooms }}</p>
+                            <p class="card-text">Area: {{ house.square_meters }} m²</p>
+                            <p class="card-text">Price: {{ house.price_per_month }} €</p>
+                            <a href="{% url 'house_detail' house.id %}" class="btn btn-primary">More Information</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No houses available for rent.</p>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="text-center mt-5">
+        {% if user.is_authenticated %}
+            <a href="{% url 'rent_your_house' %}" class="btn btn-lg btn-primary">Rent Your House</a>
+        {% else %}
+            <p>You must be logged in to add a house for rent.</p>
+        {% endif %}
+    </div>
+
+    <div class="mt-5">
+        <center><h2><b>Statistical Insights on Available Houses</b></h2></center>
+
+        <div class="mt-5">
+            <h3>Scatter Plot - Area vs. Price</h3>
+            <div>{% if scatter_html %}{{ scatter_html|safe }}{% endif %}</div>
+        </div>
+
+        <div class="mt-5">
+            <h3>Histogram - Price Distribution</h3>
+            <div>{% if histogram_html %}{{ histogram_html|safe }}{% endif %}</div>
+        </div>
+
+        <div class="mt-5">
+            <h3>Line Chart - How Year Built Affects Price</h3>
+            <div>{% if line_html %}{{ line_html|safe }}{% endif %}</div>
+        </div>
+
+        <div class="mt-5">
+            <h3>Pie Chart - Share of Houses by Number of Rooms</h3>
+            <div>{% if pie_html %}{{ pie_html|safe }}{% endif %}</div>
+        </div>
+
+        <div class="mt-5">
+            <h3>Heatmap - Correlation Between Variables</h3>
+            <div>{% if heatmap_html %}{{ heatmap_html|safe }}{% endif %}</div>
+        </div>
+        
+    </div>
+{% endblock %}
